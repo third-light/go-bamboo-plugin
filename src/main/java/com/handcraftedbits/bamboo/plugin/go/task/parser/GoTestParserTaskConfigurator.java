@@ -16,12 +16,14 @@
 package com.handcraftedbits.bamboo.plugin.go.task.parser;
 
 import com.atlassian.bamboo.process.EnvironmentVariableAccessor;
+import com.atlassian.bamboo.task.TaskDefinition;
+import com.atlassian.bamboo.task.TaskTestResultsSupport;
 import com.atlassian.bamboo.v2.build.agent.capability.CapabilityContext;
 import com.atlassian.struts.TextProvider;
 import com.handcraftedbits.bamboo.plugin.go.task.common.AbstractGoTaskConfigurator;
 import org.jetbrains.annotations.NotNull;
 
-public final class GoTestParserTaskConfigurator extends AbstractGoTaskConfigurator {
+public final class GoTestParserTaskConfigurator extends AbstractGoTaskConfigurator implements TaskTestResultsSupport {
      public GoTestParserTaskConfigurator (@NotNull final CapabilityContext capabilityContext,
           @NotNull final EnvironmentVariableAccessor environmentVariableAccessor,
           @NotNull final TextProvider textProvider) {
@@ -31,5 +33,11 @@ public final class GoTestParserTaskConfigurator extends AbstractGoTaskConfigurat
 
           addParameter(GoTestParserTaskConfiguration.PARAM_PATTERN, "_goTestOutput/*.log",
                "task.parser.field.pattern.error");
+     }
+
+     @Override
+     public boolean taskProducesTestResults(@NotNull TaskDefinition taskDefinition)
+     {
+          return true;
      }
 }
