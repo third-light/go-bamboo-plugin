@@ -17,7 +17,7 @@
 <atlassian-plugin xmlns="http://www.atlassian.com/schema/plugins" key="com.handcraftedbits.bamboo.plugin.go"
                   name="${project.name}" plugins-version="2">
   <plugin-info>
-    <description>This plugin provides support for Go projects in Bamboo.</description>
+    <description>This plugin provides support for Go projects in Bamboo. Built from https://github.com/third-light/go-bamboo-plugin.</description>
     <version>${project.version}</version>
     <application-version min="5.2" />
     <vendor name="HandcraftedBits" url="https://www.handcraftedbits.com" />

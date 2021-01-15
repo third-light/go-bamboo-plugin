@@ -39,3 +39,9 @@ so `go test -cover` can be integrated natively into Bamboo.~~
 build artifact.
 - [ ] Support alternative dependency fetchers.
 - [ ] Support other Go tools (e.g., `go lint`, `go vet`, `go generate`).
+
+# Building
+
+* Requires Atlassian SDK ([see installation instructions](https://developer.atlassian.com/server/framework/atlassian-sdk/install-the-atlassian-sdk-on-a-linux-or-mac-system/))
+* Requires a 1.8 Java SDK. (e.g. [AdoptOpenJDK installed using HomeBrew on macOS](https://github.com/AdoptOpenJDK/homebrew-openjdk)) and `JAVA_HOME` envvar suitably set.
+* Run `atlas-package`, which will build a `.jar` in `target/` that can be installed into Bamboo (at `https://bamboo.myCompany.int/plugins/servlet/upm).
