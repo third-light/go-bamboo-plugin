@@ -29,7 +29,7 @@ import java.util.regex.Pattern;
 
 public final class GoTestParser {
      private static final Pattern patternPackageFinish = Pattern.compile("^(\\?   |ok  |FAIL)\t([^\t]+)\\s(.*)$");
-     private static final Pattern patternTestFinish = Pattern.compile("^--- (FAIL|PASS|SKIP): ([^ ]+) \\(([^s]+)s\\)$");
+     private static final Pattern patternTestFinish = Pattern.compile("^\\s*--- (FAIL|PASS|SKIP): ([^ ]+) \\(([^s]+)s\\)$");
 
      private GoTestParser () {
      }
@@ -38,7 +38,7 @@ public final class GoTestParser {
           return (long) 0;
      }
 
-     public static List<PackageTestResults> parseTests (final InputStream input) throws Exception {
+     public static List<PackageTestResults> parseTests(final InputStream input) throws Exception {
           final List<String> lines = IOUtils.readLines(input, "UTF-8");
           final List<PackageTestResults> packageTestResults = new LinkedList<>();
           final Stack<SingleTestResult> testResults = new Stack<>();
@@ -46,7 +46,7 @@ public final class GoTestParser {
           for (final String line : lines) {
                // A test has finished. Parse it out and push it on the stack until we know which package it belongs to.
 
-               if (line.startsWith("---")) {
+               if (line.trim().startsWith("---")) {
                     final Matcher matcher = GoTestParser.patternTestFinish.matcher(line);
 
                     if (matcher.matches()) {
